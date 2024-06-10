@@ -1,5 +1,6 @@
+import java.io.IOException;
 
-public class Calculator {
+class Calculator {
 	
 	private ILogger logger;
 	
@@ -7,22 +8,22 @@ public class Calculator {
 	{
 		this.logger = logger;//Φτιαχνω εναν Logger
 	}
-	public int add(int a, int b) {
+	public int add(int a, int b) throws IOException {
 		int result = a+b;//καλυτερα αν θελουμε ακεραιους να use long type
 		logger.log("Result = " + result);//προς το παρον logaρει προς την οθονη
 		return result;
 	}
-	public int sub(int a, int b) {
+	public int sub(int a, int b) throws IOException {
 		int result = a-b;
 		logger.log("Result = " + result);//προς το παρον logaρει προς την οθονη
 		return result;	
 	}
-	public int mult(int a, int b) {
+	public int mult(int a, int b) throws IOException {
 		int result = a*b;
 		logger.log("Result = " + result);//προς το παρον logaρει προς την οθονη
 		return result;
 	}
-	public double div(int a, int b) {
+	public double div(int a, int b) throws IOException {
 		double result = a/(b+0.0);//We use this because
 		//οταν κανουμε απλα α/β με ακεραιους ακομη και αν το result ειναι δεκαδικος
 		//η java θα μας επιστρεψει το ακεραιο μερος + 2 μηδενικα. Οποτε, μετατρεπουμε

@@ -1,8 +1,6 @@
-import java.io.IOException;
-
 public class CalcMain {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception{
 		FileLogger l = new FileLogger();
 		Calculator c = new Calculator(l);
 		c.add(3, 5);

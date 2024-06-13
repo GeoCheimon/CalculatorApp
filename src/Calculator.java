@@ -1,3 +1,5 @@
+import com.GeoCheimon.exceptions.OverflowException;
+import com.GeoCheimon.logger.ILogger;
 class Calculator {
 	
 	private ILogger logger;
@@ -6,10 +8,21 @@ class Calculator {
 	{
 		this.logger = logger;//Φτιαχνω εναν Logger
 	}
-	public int add(int a, int b) throws Exception{
-		int result = a+b;//καλυτερα αν θελουμε ακεραιους να use long type
+	public int add(int a, int b) throws Exception, OverflowException
+	{//πρεπει να βαλουμε οτι κανει throws και το OverflowException γιατι δεν το χειριζεται
+		long result = (long)a+ (long)b;//καλυτερα αν θελουμε ακεραιους να use long type
+		if(result>Integer.MAX_VALUE)//Δλδ εχει γινει overflow, γτ το result ειναι long,
+									//ενω ο έλεγχος ειναι Interger
+		{
+			//εδω θελει new για αυτο το exception, θα κάνει και import και το πακετο.
+			//throw new OverflowException();//και θα διακοπεί η εκτέλεση
+			//αυτό το exception θα σκασει μέσα στην main
+			throw new OverflowException("Overflow");//Περιπτωση που φτιαξουμε κατασκευαστη 
+			//OverflowException και περναμε απο εκει το δικο μας msg
+		}
+		
 		logger.log("Result = " + result);//προς το παρον logaρει προς την οθονη
-		return result;
+		return (int)result;
 	}
 	public int sub(int a, int b) throws Exception{
 		int result = a-b;
